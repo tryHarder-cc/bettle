@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="百度地图,百度地图API，百度地图自定义工具，百度地图所见即所得工具" />
+    <meta name="description" content="百度地图API自定义地图，帮助用户在可视化操作下生成百度地图" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="shortcut icon" href="img/iconIogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/aos.css">
+    <script src="js/aos.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .iw_poi_title {
+            color: #CC5522;
+            font-size: 14px;
+            font-weight: bold;
+            overflow: hidden;
+            padding-right: 13px;
+            white-space: nowrap
+        }
+        
+        .iw_poi_content {
+            font: 12px arial, sans-serif;
+            overflow: visible;
+            padding-top: 4px;
+            white-space: -moz-pre-wrap;
+            word-wrap: break-word
+        }
+    </style>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+
+
+</head>
+<style>
+
+</style>
+
+<body>
+    <header>
+        <!-- 导航栏部分 -->
+        <div class="head">
+            <div class="head_nav">
+                <div class="logo">
+                    <img src="img/logo.png">
+                    <p class="m-l10">Bettle</p>
+                </div>
+                <div class="nav_bar">
+                    <ul>
+                        <li><a href="#Hom">Home</a></li>
+                        <li><a href="#About">About</a></li>
+                        <li><a href="#Goods">Goods</a></li>
+                        <li><a href="#Sale">Sale</a></li>
+                        <li><a href="#Contact">Contact</a></li>
+                        <li><a href="#address">Address</a></li>
+                        <p class="log_hr"><a href="/login">login</a></li>
+                        </p>
+                        <p class="shopCar">
+                            <a href="/ShoppingCar"><img src="img/shopCar.png" alt=""></a>
+                        </p>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div id="Hom" class="inWel main">
+            <!-- 欢迎来到主页 -->
+            <div class="fontCs main clearfix">
+                <p class="tex_one">Welcome</p>
+                <p class="tex_two">The</p>
+                <p class="tex_three">Bettle</p>
+            </div>
+
+            <div class="clickBy main">
+                <!-- 立即购买 -->
+                <a href="#Goods">
+                    <ul>
+                        <a href="#Goods">
+                            <li>Click</li>
+                            <li>By</li>
+                        </a>
+                    </ul>
+                </a>
+            </div>
+
+        </div>
+        <div class="About" id="About">
+            <div class="abBox main">
+                <ul>
+                    <li class="n1">About</li>
+                </ul>
+                <div class="goods fl">
+                    <img class="hd" src="img/AboutHand.png" alt="" aos="flip-left" aos-easing="ease" aos-delay="400">
+                    <img class="ao" src="img/AboutOne.png" alt="" aos="fade-down" aos-easing="ease" aos-delay="400">
+                    <img class="at" src="img/AboutTwo.png" alt="" aos="fade-up" aos-easing="ease" aos-delay="400">
+                    <img class="ab" src="img/AboutBook.png" alt="" aos="flip-right" aos-easing="ease" aos-delay="400">
+                </div>
+                <div class="goText fl" aos="flip-right" aos-easing="ease" aos-delay="400">
+                    <ul>
+                        <li>A good mobile phone</li>
+                        <li>case can better protect</li>
+                        <li>your phone!</li>
+                    </ul>
+                </div>
+                <div class="selec fl">
+                    <ul class="seImg fl">
+                        <li><img src="img/AboutM.png" alt="" aos="fade-left" aos-easing="ease" aos-delay="400"></li>
+                        <li><img src="img/AboutX.png" alt="" aos="fade-right" aos-easing="ease" aos-delay="400"></li>
+                        <li><img src="img/AboutB.png" alt="" aos="fade-left" aos-easing="ease" aos-delay="400"></li>
+                        <li><img src="img/AboutF.png" alt="" aos="fade-right" aos-easing="ease" aos-delay="400"></li>
+                    </ul>
+                    <ul class="seTex fs14">
+                        <li aos="fade-down" aos-easing="ease" aos-delay="400">We have a lot of advantages</li>
+                        <li aos="fade-left" aos-easing="ease" aos-delay="400"><a>A wide variety of styles</a></li>
+                        <li aos="fade-right" aos-easing="ease" aos-delay="400"><a>Best Silica gel material</a></li>
+                        <li aos="fade-left" aos-easing="ease" aos-delay="400"><a>Great service</a></li>
+                        <li aos="fade-right" aos-easing="ease" aos-delay="400"><a>Super fast logistics</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="aGoods" id="Goods">
+            <div class="comGoods main">
+                <ul>
+                    <li class="n1">GOODS</li>
+                    <li class="n2">Rich && Varied</li>
+                    <li class="n3"><a href="">To learn more</a></li>
+                </ul>
+                <div class="Commodity">
+                    {{ each goods item}}
+                    <dl class="fs12">
+
+                        <dt>
+
+                            <p class="ph">
+                                <img src="img/{{item.picone}}" alt="" aos="fade-down" aos-easing="ease" aos-delay="400">
+                                <span>
+                                    <a href="/goodsDetails?goodid={{ item.goodid }}">+</a>
+                                </span>
+                            </p>
+                        </dt>
+                        <dd class="goOne fs14" aos="fade-up" aos-easing="ease" aos-delay="400">{{item.goodname}}</dd>
+                        <dd aos="fade-up" aos-easing="ease" aos-delay="400">All models are available</dd>
+                        <dd aos="fade-up" aos-easing="ease" aos-delay="400">Pictures are for reference only!</dd>
+                        <dd aos="fade-up" aos-easing="ease" aos-delay="400">{{item.Goodsprice}} RMB</dd>
+
+                    </dl>
+                    {{ /each }}
+
+
+                </div>
+            </div>
+        </div>
+        <div class="aSale" id="Sale">
+            <div class="comaSale main">
+                <ul>
+                    <li class="n1">Sale</li>
+                    <li class="n2">There Will Be a Lot Of Bargains</li>
+                </ul>
+                <div class="Commodity">
+                    {{each sales item}}
+                    <dl class="fs12">
+                        <dt>
+                            <p class="ph">
+                                <img src="img/{{item.mainpic}}" alt="" aos="flip-left" aos-easing="ease"
+                                    aos-delay="400">
+                                <span>
+                                    <a href="/salesDetails?saleid={{ item.saleid }}">+</a>
+                                </span>
+                            </p>
+                        </dt>
+                        <dd class="goOne fs14"><img src="img/{{item.Viecpic}}" alt=""></dd>
+                        <dd class="goTwo fs14">{{item.price}}RMB</dd>
+                        <dd class="goOne fs14"> {{item.goodname}} </dd>
+                        <dd class="goThree clearfix">
+                            <img class="fl" src="img/{{item.Vonepic}}" alt="">
+                            <p class="fl">{{item.contentone}}</p>
+                        </dd>
+                        <dd class="goThree clearfix">
+                            <img class="fl" src="img/{{item.Vtwopic}}" alt="">
+                            <p class="fl">{{item.contenttwo}}</p>
+                        </dd>
+                        <dd class="goThree clearfix">
+                            <img class="fl" src="img/{{item.Vthreepic}}" alt="">
+                            <p class="fl">{{item.contentthree}}</p>
+                        </dd>
+                        <dd class="goThree clearfix">
+                            <img class="fl" src="img/{{item.Vfourpic}}" alt="">
+                            <p class="fl">{{item.contentfour}}</p>
+                        </dd>
+                        <dd class="goThree clearfix">
+                            <img class="fl" src="img/{{item.Vfifthdpic}}" alt="">
+                            <p class="fl">{{item.contentfifth}}</p>
+                        </dd>
+
+                    </dl>
+                    {{/each}}
+
+                </div>
+            </div>
+        </div>
+        <div class="Contact" id="Contact">
+            <div class="section main">
+                <div class="container">
+                    <ul>
+                        <li class="n1">Contact</li>
+                    </ul>
+                    <div class="cont_head col-md-12">
+                        <h1 class="size-50">You can give us feedback if you have any questions!</h1>
+                        <div class="h-50"></div>
+                    </div>
+                    <div class="cont_body">
+                        <div class="cont_body_left col-md-4" data-aos="fade-up">
+                            <h3>Phone Number</h3>
+                            <p>110120119</p>
+                            <h3> Mobile Numberr</h3>
+                            <p>0731 2457 5486 1356</p>
+                            <h3>Email</h3>
+                            <p>1944703709@qq.com </p>
+
+                            <h3>Social Network</h3>
+
+                            <ul class="social">
+                                <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-stack-overflow"></i></a></li>
+                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+
+                            <div class="h-50"></div>
+                        </div>
+                        <div class="cont_body_right col-md-8" data-aos="fade-up">
+                            <form class="contact-bg" id="contact-form" name="contact" method="post" novalidate="novalidate" enctype="application/x-www-form-urlencoded" action="/doFeedback">
+                                <input type="hidden" name="custid">
+                                <input type="text" name="name" class="form-control" placeholder="Your Name" />
+                                <input type="email" name="email" class="form-control" placeholder="Your E-mail" />
+                                <input type="text" name="phone" class="form-control" placeholder="Phone Number" />
+                                <textarea name="message" class="form-control" placeholder="Your Message" style="height:120px"></textarea>
+                                <button id="submit" type="submit" name="submit" class="btn btn-glance">Send</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="address" id="address">
+            <ul style="text-align: center;padding-top: 80px;">
+                <li class="n1">Address</li>
+                <li class="n2"></li>
+            </ul>
+            <div class="address_css" id="dituContent"></div>
+        </div>
+
+    </section>
+    <footer>
+
+        <div class="hmd">
+            <h4></h4>
+            <!-- 您有任何问题都可以对我们进行反馈哦! -->
+            <h5>You can give us feedback if you have any questions!</h5>
+        </div>
+        <div class="foo main">
+            <div class="fot1">
+                <ul class="fs12">
+                    <h4><a href="">品质保证</a></h4>
+                    <li><a>这是一家只在乎品质的公司</a><span>10-09</span></li>
+                    <li><a>拥有比较成熟的技术！</a><span>10-09</span></li>
+                    <li><a>款式全新正在上架</a><span>10-10</span></li>
+                    <li><a> 全力打造优质产品</a><span>10-09</span></li>
+                    <li><a>精准打击劣质商品</a><span>10-09</span></li>
+                    <li><a>好皮好质，匠心造</a><span>10-10</span></li>
+                </ul>
+            </div>
+
+            <div class="fot1">
+                <ul class="fs14">
+                    <h4><a>特色体验</a></h4>
+                    <li><a>购买商品显示预计送达时效</a><span>10-10</span></li>
+                    <li><a>7天内可退换货，15天内可换货</a><span>10-09</span></li>
+                    <li><a>为你打造最优质的服务</a><span>10-10</span></li>
+                    <li><a>只一触，爱不释手</a><span>10-09</span></li>
+                    <li><a>即刻享受、最纯粹的裸机体验</a><span>10-09</span></li>
+                    <li><a>无边框设计怎么用都顺手</a><span>10-10</span></li>
+                </ul>
+                <p><a href="#Hom">Return——></a></p>
+            </div>
+
+            <div class="fot1">
+                <ul class="fs14">
+                    <h4><a>产品优点</a></h4>
+                    <li><a>镜头全包，极致防护</a><span>10-10</span></li>
+                    <li><a>高清所绘，随你所爱</a><span>10-09</span></li>
+                    <li><a>半透磨砂肤感壳</a><span>10-10</span></li>
+                    <li><a>只一眼，怦然心动</a><span>10-09</span></li>
+                    <li><a>边角减震防摔，细心呵护</a><span>10-09</span></li>
+                    <li><a>从不妥协产品细节</a><span>10-10</span></li>
+                </ul>
+
+            </div>
+
+        </div>
+        <div class="ter fs12">
+            <ul>
+                <li><a href="">网站首页</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                <li><a>关于我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                <li><a>产品展示</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                <li><a>客户案例</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                <li><a>新闻资讯</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                <li><a>帮助中心</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                <li><a>解决方案</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                <li><a>联系我们</a></li>
+            </ul>
+            <p>Copyright |2020 -2030 hunan All rights reserved Power by DedeCms </p>
+            <p>Tel: 17673802509 E hail : 2805995532@qq.com Address:hu nan</p>
+        </div>
+    </footer>
+
+
+
+
+
+    <script>
+        //创建和初始化地图函数：
+        function initMap() {
+            createMap(); //创建地图
+            setMapEvent(); //设置地图事件
+            addMapControl(); //向地图添加控件
+            addMarker(); //向地图中添加marker
+        }
+
+        //创建地图函数：
+        function createMap() {
+            var map = new BMap.Map("dituContent"); //在百度地图容器中创建一个地图
+            var point = new BMap.Point(112.997976, 28.006415); //定义一个中心点坐标
+            map.centerAndZoom(point, 16); //设定地图的中心点和坐标并将地图显示在地图容器中
+            window.map = map; //将map变量存储在全局
+        }
+
+        //地图事件设置函数：
+        function setMapEvent() {
+            map.enableDragging(); //启用地图拖拽事件，默认启用(可不写)
+            map.enableScrollWheelZoom(); //启用地图滚轮放大缩小
+            map.enableDoubleClickZoom(); //启用鼠标双击放大，默认启用(可不写)
+            map.enableKeyboard(); //启用键盘上下左右键移动地图
+        }
+
+        //地图控件添加函数：
+        function addMapControl() {
+            //向地图中添加缩放控件
+            var ctrl_nav = new BMap.NavigationControl({
+                anchor: BMAP_ANCHOR_TOP_LEFT,
+                type: BMAP_NAVIGATION_CONTROL_LARGE
+            });
+            map.addControl(ctrl_nav);
+            //向地图中添加缩略图控件
+            var ctrl_ove = new BMap.OverviewMapControl({
+                anchor: BMAP_ANCHOR_BOTTOM_RIGHT,
+                isOpen: 1
+            });
+            map.addControl(ctrl_ove);
+            //向地图中添加比例尺控件
+            var ctrl_sca = new BMap.ScaleControl({
+                anchor: BMAP_ANCHOR_BOTTOM_LEFT
+            });
+            map.addControl(ctrl_sca);
+        }
+
+        //标注点数组
+        var markerArr = [{
+            title: "甲壳虫网络有限公司",
+            content: "官方微信：clean_today<br/>官方QQ：2805995532",
+            point: "112.994849|28.005378",
+            isOpen: 0,
+            icon: {
+                w: 21,
+                h: 21,
+                l: 0,
+                t: 0,
+                x: 6,
+                lb: 5
+            }
+        }];
+        //创建marker
+        function addMarker() {
+            for (var i = 0; i < markerArr.length; i++) {
+                var json = markerArr[i];
+                var p0 = json.point.split("|")[0];
+                var p1 = json.point.split("|")[1];
+                var point = new BMap.Point(p0, p1);
+                var iconImg = createIcon(json.icon);
+                var marker = new BMap.Marker(point, {
+                    icon: iconImg
+                });
+                var iw = createInfoWindow(i);
+                var label = new BMap.Label(json.title, {
+                    "offset": new BMap.Size(json.icon.lb - json.icon.x + 10, -20)
+                });
+                marker.setLabel(label);
+                map.addOverlay(marker);
+                label.setStyle({
+                    borderColor: "#808080",
+                    color: "#333",
+                    cursor: "pointer"
+                });
+
+                (function() {
+                    var index = i;
+                    var _iw = createInfoWindow(i);
+                    var _marker = marker;
+                    _marker.addEventListener("click", function() {
+                        this.openInfoWindow(_iw);
+                    });
+                    _iw.addEventListener("open", function() {
+                        _marker.getLabel().hide();
+                    })
+                    _iw.addEventListener("close", function() {
+                        _marker.getLabel().show();
+                    })
+                    label.addEventListener("click", function() {
+                        _marker.openInfoWindow(_iw);
+                    })
+                    if (!!json.isOpen) {
+                        label.hide();
+                        _marker.openInfoWindow(_iw);
+                    }
+                })()
+            }
+        }
+        //创建InfoWindow
+        function createInfoWindow(i) {
+            var json = markerArr[i];
+            var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title +
+                "</b><div class='iw_poi_content'>" + json.content + "</div>");
+            return iw;
+        }
+        //创建一个Icon
+        function createIcon(json) {
+            var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w, json.h), {
+                imageOffset: new BMap.Size(-json.l, -json.t),
+                infoWindowOffset: new BMap.Size(json.lb + 5, 1),
+                offset: new BMap.Size(json.x, json.h)
+            })
+            return icon;
+        }
+
+        initMap(); //创建和初始化地图
+    </script>
+    <script>
+        AOS.init({
+            easing: 'ease-out-back',
+            duration: 1000
+        });
+    </script>
+    <script>
+        $("a").click(function() {
+            $("html, body").animate({
+                scrollTop: $($(this).attr("href")).offset().top - 20 + "px"
+            }, 500);
+            return false; //不要这句会有点卡顿
+
+        });
+    </script>
+</body>
+
+</html>

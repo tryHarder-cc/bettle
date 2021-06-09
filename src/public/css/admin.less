@@ -1,0 +1,283 @@
+@charset "utf-8";
+
+html,
+body,
+ol,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+th,
+td,
+dl,
+dd,
+form,
+fieldset,
+legend,
+input,
+textarea,
+select {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  font-size: 16px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+b,
+strong {
+  font-weight: normal;
+}
+
+i,
+em {
+  font-style: normal;
+}
+
+a,
+u {
+  text-decoration: none;
+  color: #000;
+}
+
+img {
+  border: 0;
+}
+
+input,
+fieldset {
+  outline: none;
+  border: 0;
+}
+
+li {
+  list-style: none;
+}
+
+/*版心*/
+.main {
+  width: 1080px;
+  margin: 0 auto;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.clearfix::after {
+  content: "";
+  width: 0;
+  height: 0;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  clear: both;
+}
+
+.fs12 {
+  font-size: 12px;
+}
+
+.fs14 {
+  font-size: 14px;
+}
+
+.fw900 {
+  font-weight: 700;
+}
+
+.p-r {
+  position: relative;
+}
+
+.p-a {
+  position: absolute;
+}
+
+.m-l10 {
+  margin-left: 10px;
+}
+
+.m-r40 {
+  margin-right: 40px;
+}
+
+@font-face {
+  font-family: myFont;
+  src: url("../font/IMPACT.TTF");
+}
+
+@font-face {
+  font-family: navBar;
+  src: url("../font/ARIAL.TTF");
+}
+
+@font-face {
+  font-family: texOne;
+  src: url("../font/GABRIOLA.TTF");
+}
+
+@font-face {
+  font-family: texTwo;
+  src: url("../font/S8514FIX.FON");
+}
+
+@font-face {
+  font-family: ccFont;
+  src: url("../font/SITKAI.TTC");
+}
+
+@font-face {
+  font-family: MtFont;
+  src: url("../font/MVBOLI.TTF");
+}
+
+header {
+    height: 50px;
+   
+    
+
+  .poFc {
+    width: 1519px;
+    height: 50px;
+    margin: 0 auto;
+    position: relative;
+
+    .he_nav {
+      height: 50px;
+      position: fixed;
+      z-index: 2;
+
+      .hac {
+        width: 1536px;
+        margin: 0 auto;
+        margin-left: -8px;
+        height: 50px;
+       // background-image: linear-gradient(to right,#f6f3ea,violet);  
+        background-color: #ffffff;
+        border-bottom: 1px solid black;
+
+        span {
+          display: inline-block;
+          color: #ff5740;
+          font-family: "myFont";
+          font-size: 35px;
+          margin-left: 20px;
+          margin-top: 2px;
+          border-radius: 10px;
+          
+        }
+
+        img {
+          margin-top: -25px;
+          margin-left: 50px;
+          display: inline-block;
+          height: 40px;
+        }
+      }
+    }
+  }
+
+}
+
+section {
+  display: flex;
+  margin: 0 auto;
+  width: 1536px;
+  .bcc {
+    width: 300px;
+    position: fixed;
+    height: 709px;
+    background-color: #000000;
+   //background-image: linear-gradient(to bottom,#f6f3ea,violet); 
+   .list_dt{
+     p{
+       img{
+         width: 20px;
+       }
+     }
+   }
+  }
+
+
+  .pad {
+    width: 1280px;
+    margin-left: 300px;
+    .pad_admin{
+      height: 709px;
+      background:url(../img/admin_logo.png) no-repeat center 160px;
+      background-size: 250px;
+      background-color: #fbd7b5;
+      .P_welcome{
+        font-family: myFont;
+        text-align: center;
+        width: 600px;
+        font-size: 60px;
+        padding-top: 350px;
+        margin-left: 320px;
+      }
+    }
+   
+    h1{
+      width: 700px;
+      font-size: 60px;
+      text-align: center;
+      border-radius: 20px;
+      margin: 50px auto;
+    }
+    form{
+      .boder{
+        .inp_sou{
+          width: 300px;
+          height: 30px;
+          margin-left: 40px;
+          padding-left: 10px;
+          border: 1px solid #999999;
+          border-radius: 5px;
+        }
+        .inp_an{
+          width: 50px;
+          height: 30px;
+          border: 1px solid #999999;
+          border-radius: 5px;
+        }
+      }
+    }
+    table{
+      td{
+        a{
+          .in_fahuo{
+            width: 54px;
+            height: 34px;
+            border-radius: 5px;
+            text-align: center;
+            color: #ffffff;
+            background-color:#ff5740;
+          }
+        }
+      }
+    }
+  }
+
+}

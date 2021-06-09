@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/logFunction.js"></script>
+    <link rel="stylesheet" href="css/regist.css">
+    <link rel="shortcut icon" href="img/iconIogo.png" type="image/x-icon">
+</head>
+
+<body>
+    <form method="POST" action="/doRegist">
+        <header>
+            <img src="img/reg_logo.png" alt="">
+        </header>
+        <content>
+            <div>
+                <input type="text" name="user" id="uName" class="fw900" value="" placeholder="UserName"><br>
+            </div>
+
+            <div>
+                <input type="password" name="password" id="pwd" class="fw900" value="" placeholder="PassWord">
+            </div>
+            <div>
+                <input type="password" name="repeatpassword" id="pwd_ag" class="fw900" value="" placeholder="Repeat PassWord">
+            </div>
+
+            <div id="oError"><br></div>
+        </content>
+        <footer>
+            <p class="fw900"><a href="/login">Login!</a></p>
+            <button type="submit" class="bu_reg fw900">Regist</button>
+        </footer>
+    </form>
+</body>
+
+</html>

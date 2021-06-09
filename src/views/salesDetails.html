@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/goodsDetails.css">
+    <link rel="shortcut icon" href="img/iconIogo.png" type="image/x-icon">
+    <script src="/js/jquery-1.11.1.js"></script>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+</head>
+<script>
+    $(function() {
+        $(".addCart").click(function() {
+            var saleid = $(".axb_goodid").val();
+            var mainpic = $(".axb_pic").val();
+            var price = $(".axb_saleprice").val();
+            var model = $(".inP>input[type=text]").val();
+            var dataStr = "saleid=" + saleid + "&mainpic=" + mainpic + "&price=" + price + "&model=" + model;
+            window.location.href = "/good/saleAddGood?" + dataStr;
+        })
+        $(".buySale").click(function() {
+            var goodid = $(".axb_goodid").val();
+            var model = $(".inP>input[type=text]").val();
+            $.ajax({
+                //提交数据的类型 POST GET
+                type: "get",
+                //提交的网址
+                url: "/buySale",
+                //提交的数据
+                data: {
+                    goodid,
+                    model
+                },
+                success: function(data) {
+                    alert("提交订单成功!")
+
+                },
+                error: function() {
+                    console.log(1111);
+                }
+            });
+
+        })
+    })
+</script>
+
+<body>
+    <header></header>
+    <content>
+        <div class="cen main">
+            <div class="banner main">
+                <div class="ban">
+                    <div class="ban_top">
+                        <ul class="bot">
+                            <li>
+                                <a href="">
+                                    <img id="ipOne" src="/img/{{ salesDetails.mainpic }}" alt="">
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="">
+                                    <img id="ipTwo" src="/img/{{ salesDetails.mainpic }}" alt="">
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="">
+                                    <img id="ipThr" src="/img/{{ salesDetails.mainpic }}" alt="">
+                                </a>
+                            </li>
+
+
+                            <li>
+                                <a href="">
+                                    <img id="ipTou" src="/img/{{ salesDetails.mainpic }}" alt="">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tgo">
+                    <div class="ban_dow">
+                        <ul class="box">
+                            <li>
+                                <a href="#ipOne">
+                                    <img src="/img/{{ salesDetails.mainpic }}" alt="">
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#ipTwo">
+                                    <img src="/img/{{ salesDetails.mainpic }}" alt="">
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#ipThr">
+                                    <img src="/img/{{ salesDetails.mainpic }}" alt="">
+                                </a>
+                            </li>
+
+
+                            <li>
+                                <a href="#ipTou">
+                                    <img src="/img/{{ salesDetails.mainpic }}" alt="">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="tex main">
+                <div class="bao">
+                    <h3>{{ salesDetails.goodname }}
+                        <p class="fs14">NEW!</p>
+                    </h3>
+                </div>
+                <div class="bac clearfix">
+                    <dl>
+                        <dt>Price:</dt>
+                        <dd style="color: #ff0000;">{{ salesDetails.price }}RMB!</dd>
+                    </dl>
+
+                    <dl>
+                        <dt>Introduce:</dt>
+                        <dd style="color: #545e81;">{{ salesDetails.preferential }}</dd>
+                    </dl>
+
+                    <dl>
+                        <dt>The delivery:</dt>
+                        <dd style="color: #545e81;">包邮到家</dd>
+                    </dl>
+
+                    <dl>
+                        <dt>Model:</dt>
+                        <dd style="color: #ff0000;">{{ salesDetails.model }}</dd>
+                    </dl>
+                </div>
+                <div class="baIn">
+                    <h4>Please enter the cell phone model!</h4>
+                    <div class="inP">
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="baImg">
+                    <a href="#" onclick="return  false;" class="addCart">
+                        <div class="cpn">
+                            <img src="/img/whileCae_03.png" alt="">
+                        </div>
+                    </a>
+                    <a href="#" onclick="return  false;" class="buySale">
+                        <div class="chn">
+                            <p class="pc">Buy Now</p>
+                        </div>
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </content>
+    <footer></footer>
+    <input type="hidden" value="{{salesDetails.saleid}}" class="axb_goodid">
+    <input type="hidden" value="{{salesDetails.mainpic}}" class="axb_pic">
+    <input type="hidden" value="{{salesDetails.price}}" class="axb_saleprice">
+
+</body>
+
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <script src="/js/jquery-3.4.1.js"></script>
+    <title>CustAdd</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            font-size: 14px;
+        }
+        
+        .list_dt {
+            /* background: #333; */
+            color: white;
+            width: 300px;
+            padding: 0 40px 0 20px;
+            height: 34px;
+            line-height: 34px;
+            cursor: pointer;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            position: relative;
+            border-bottom: 1px solid #464646;
+        }
+        
+        .list_dt:hover {
+            background: rgb(252, 161, 161);
+        }
+        
+        .list_dt:hover ._after {
+            display: block;
+            width: 3px;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #4285F4;
+        }
+        
+        #open {
+            background: #222;
+        }
+        
+        #open ._after {
+            display: block;
+            width: 3px;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #adccff;
+        }
+        
+        .list_dt_icon {
+            position: absolute;
+            right: 10px;
+            top: 11px;
+            display: block;
+            width: 12px;
+            height: 12px;
+            background: url("../off.png") no-repeat;
+            background-size: cover;
+        }
+        
+        #open .list_dt_icon {
+            background: url("../open.png") no-repeat;
+            background-size: cover;
+        }
+        
+        .list_dd {
+            display: none;
+        }
+        
+        .list_li {
+            background: #4e4e4e;
+            list-style-type: none;
+            color: white;
+            width: 300px;
+            padding: 0 30px;
+            height: 34px;
+            line-height: 34px;
+            cursor: pointer;
+            border-bottom: 1px solid #6b6b6b;
+        }
+        
+        .list_li:hover {
+            background: #c8d6ec;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="poFc">
+            <div class="he_nav">
+                <div class="hac">
+                    <img src="/img/logo.png" alt="">
+                    <span>Bettle</span>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+    <section>
+        <div class="bcc fl">
+            <dl class="list_dl">
+                <dt class="list_dt">
+                    <span class="_after"></span>
+                    <p><img  src="/img/index_03.png" alt=""> <a href="/admin/admin" style="color: #fff;">
+                        首页
+                    </a></p>
+                    <i class="list_dt_icon"></i>
+                </dt>
+                <dt class="list_dt">
+                    <span class="_after"></span>
+                    <p><img src="/img/admin_01.png" alt=""> 用户管理</p>
+                    <i class="list_dt_icon"></i>
+                </dt>
+                <dd class="list_dd">
+                    <ul>
+
+                        <a href="/admin/CustList">
+                            <li class="list_li">CustList</li>
+                        </a>
+                        <a href="/admin/CustAdd">
+                            <li class="list_li">CustAdd</li>
+                        </a>
+                    </ul>
+                </dd>
+
+                <dt class="list_dt">
+                    <span class="_after"></span>
+                    <p><img src="/img/admin_02.png" alt=""> 商品管理</p>
+                    <i class="list_dt_icon"></i>
+                </dt>
+                <dd class="list_dd">
+                    <ul>
+                        <a href="/admin/goodlist">
+                            <li class="list_li">goodlist</li>
+                        </a>
+                        <a href="/good/goodadd">
+                            <li class="list_li">goodAdd</li>
+                        </a>
+
+
+
+                    </ul>
+                </dd>
+
+
+                <dt class="list_dt">
+                    <span class="_after"></span>
+                    <p><img src="/img/dindan_03.png" alt=""> 订购管理</p>
+                    <i class="list_dt_icon"></i>
+                </dt>
+                <dd class="list_dd">
+                    <ul>
+                        <a href="/admin/orderlist">
+                            <li class="list_li">orderlist</li>
+                        </a>
+                    </ul>
+                </dd>
+
+                <dt class="list_dt">
+                    <span class="_after"></span>
+                    <p><img src="/img/admin_03.png" alt=""> 用户反馈</p>
+                    <i class="list_dt_icon"></i>
+                </dt>
+                <dd class="list_dd">
+                    <ul>
+                        <a href="/admin/feedlist">
+                            <li class="list_li">feedlist</li>
+                        </a>
+
+                    </ul>
+                </dd>
+
+            </dl>
+        </div>
+        <div class="pad">
+            <!-- 添加 修改 -->
+            <div class="add">
+                <h1 align="center">ADD</h1>
+
+                <form action="/admin/doAdduser" method="POST" enctype="application/x-www-form-urlencoded">
+                    <table class="table table-hover table-bordered">
+                        <tr>
+                            <th>UserName</th>
+                            <td>
+                                <input type="text" name="username" class="form-control" id="UserName">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Password</th>
+                            <td>
+                                <input type="password" name="password" class="form-control" id="Password">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Sex</th>
+                            <td>
+                                <input type="text" name="sex" class="form-control" id="Sex">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Birthday</th>
+                            <td>
+                                <input type="date" name="birthday" class="form-control" id="Birthday">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Address</th>
+                            <td>
+                                <input type="text" name="address" class="form-control" id="Address">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Phone</th>
+                            <td>
+                                <input type="text" name="phone" class="form-control" id="Phone">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center">
+                                <!-- <input type="reset" value="重置" class="btn btn-primary" id="reset" /> -->
+                                <input type="submit" value="新增" class="btn btn-success" id="add">
+                                <!-- <input type="button" value="修改" class="btn btn-info" id="" onclick="update()"> -->
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+
+
+    </section>
+
+
+    <script type="text/javascript">
+        $(".list_dt").on("click", function() {
+            $('.list_dd').stop();
+            $(this).siblings("dt").removeAttr("id");
+            if ($(this).attr("id") == "open") {
+                $(this).removeAttr("id").siblings("dd").slideUp();
+            } else {
+                $(this).attr("id", "open").next().slideDown().siblings("dd").slideUp();
+            }
+        });
+    </script>
+</body>
+
+</html>

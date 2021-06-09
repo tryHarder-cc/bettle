@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <script src="js/logFunction.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="shortcut icon" href="img/iconIogo.png" type="image/x-icon">
+</head>
+
+<body>
+    <form method="POST" action="/doLogin">
+        <header>
+            <img src="img/Login_logo.png" alt="">
+        </header>
+
+        <content>
+            <div class="inp_1">
+                <input type="text" name="user" class="fw900" id="uName" value="" placeholder="UserName"><br>
+            </div>
+
+            <div>
+                <input type="password" name="password" class="fw900" id="pwd" value="" placeholder="PassWord">
+            </div>
+
+            <div id="oError" style="float: left;"><br></div>
+            <div class="foo_hr">
+                <p>
+                    <a href="/regist"><input type="button" class="p1 fs12 fw900" name="forName" value="Forget Password?"></a>
+                </p>
+                <p>
+                    <a href="/regist"><input type="button" class="p2 fs12 fw900" name="regist" value="Regist?"></a>
+                </p>
+            </div>
+        </content>
+
+        <footer>
+            <button type="submit" id="jumpto" class="bu_login fw900">Login</button>
+        </footer>
+
+    </form>
+    <!--<script>ady(function () {-->
+    <!--$(document).re-->
+    <!--$("#jumpto").click(function (e) {-->
+    <!--window.location="/index";-->
+    <!--});-->
+    <!--});-->
+    <!--</script>-->
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+@charset "utf-8";
+html,body,ol,ul,li,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0;}
+body{
+    font-size:16px;
+    font-family: '微软雅黑';
+    background-color: #5dc8f7;
+}
+h1,h2,h3,h4,h5,h6{
+    font-size:16px;
+    font-weight: normal;
+}
+b,strong{
+    font-weight: normal;
+}
+i,em{
+    font-style: normal;
+}
+a,u{
+    text-decoration: none;
+	color:#000;
+}
+img{
+    border:0;
+    display:block;
+}
+input,fieldset{
+    outline: none;
+    border:0;
+}
+li{list-style:none;}
+
+
+/*版心*/
+.main{
+	width:1200px;
+	margin:0 auto;
+}
+.fl{float:left;}
+.fr{float:right;}
+.clearfix::after{
+	content:"";
+	width:0;
+	height:0;
+	display:block;
+	overflow:hidden;
+	visibility:hidden;
+	clear:both;
+}
+.fs12{font-size:12px;}
+.fs14{font-size:14px;}
+.fw900{font-weight: 700;}
+.p-r{position:relative;}
+.p-a{position:absolute;}
+
+.m-l10{margin-left:10px;}
+.m-r10{margin-right:10px;}
+form{
+    width: 300px;
+    // background-color: red;
+    text-align: center;
+    margin: auto;
+    margin-top: 7%;
+    position: relative;
+    display: block;
+   header{
+       img{
+           width: 250px; 
+           margin: 0 auto;
+       }
+   }
+   content{
+       color: black;
+       #uName{
+           width: 200px;
+           height: 30px;
+           margin-top: 30px;
+           text-align: center;
+           background-color: #e1f1fe;
+       }
+       #pwd{
+        width: 200px;
+        height: 30px;
+        margin-top: 30px;
+        text-align: center;
+        background-color: #e1f1fe;
+    }
+    .foo_hr{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 5px;
+        
+        .p1{
+            margin-left: 50px;
+            background: rgba(0, 0, 0, 0);
+            text-decoration: underline;
+        }
+        .p2{
+            margin-right: 50px;
+            background: rgba(0, 0, 0, 0);
+            text-decoration: underline;
+        }
+    }
+   }
+   footer{
+       margin: 0 auto;
+       .bu_login{
+        width: 100px;
+        height: 24px;
+        background-color: #909090;
+        border: 0px;
+        margin-top: 25px;
+       }
+   }
+}
+

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <link rel="stylesheet" href="/css/SpCar.css">
+    <script src="/js/jquery-3.4.1.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="nav main">
+            <span class="fl">
+                <a href="/">
+                <img src="/img/logo.png" />
+            </a>
+			</span>
+            <p class="sCar">Better Shopping</p>
+        </div>
+    </header>
+    <section class="main">
+        <form action="/doClearCart" method="get">
+            <table id="cart">
+                <tr id="head">
+                    <th width="50px"><input class="allSelect" type="checkbox">
+                        <h5></h5>
+                    </th>
+                    <th width="100px;">
+                        <h4>商品图片</h4>
+                    </th>
+                    <th width="400px;">
+                        <h4>商品型号</h4>
+                    </th>
+                    <th width="100px">
+                        <h4>单价</h4>
+                    </th>
+                    <th width="120px">
+                        <h4>数量</h4>
+                    </th>
+                    <th width="100px">
+                        <h4>小计</h4>
+                    </th>
+                    <th width="50px">
+                        <h4>操作</h4>
+                    </th>
+                </tr>
+
+                {{each data item}}
+                <tr>
+                    <!--<td type="hidden" name="scid">{{item.scid}}</td>-->
+                    <td><input class="select" value="{{item.goodid}}" name="goodid" type="checkbox"></td>
+                    <td><img class="img_shop" src="/img/{{item.pic}}"></td>
+                    <input type="hidden" name="model" value="{{ item.model }}">
+                    <input type="hidden" name="quantity" value="{{ item.quantity }}">
+                    <td class="goods">{{ item.model }}</td>
+                    <td class="price" name="saleprice">{{ item.saleprice }}</td>
+                    <td>
+                        <div class="number">
+                            <div class="desymbol">-</div>
+                            <div hidden>{{item.goodid}}</div>
+                            <div class="acc">{{ item.quantity }}</div>
+                            <div class="adsymbol">+</div>
+                        </div>
+                    </td>
+                    <td class="total"></td>
+                    <td class="dele"><button class="sCh">
+						<h5>删除</h5>
+					</button></td>
+                </tr>
+                {{/each}}
+
+            </table>
+            <div id="settlement">
+                <div class="qSele"><input class="allSelect" type="checkbox">全选</div>
+                <div class="qCoun">全选商品<span id="NumofGoods">0</span><span>件</span></div>
+
+                <div class="qGet">合计：¥<span id="addupto"></span></div>
+
+                <button class="elJs ">
+                        <a class="jiesuan1" id="jiesuan">结算</a>
+                    </button>
+
+
+            </div>
+
+
+
+        </form>
+    </section>
+
+
+    <!--实现购物车的操作-->
+    <script>
+        var prices = getClasses("price"),
+            cart = document.getElementById("cart");
+        acc = getClasses("acc"),
+            totals = getClasses("total"),
+            detracts = getClasses("desymbol"),
+            adds = getClasses("adsymbol"),
+            NumofGoods = document.getElementById("NumofGoods"),
+            addupto = document.getElementById("addupto"),
+            allSelect = getClasses("allSelect"),
+            select = getClasses("select"),
+            dele = getClasses("dele");
+
+        count();
+        countAll();
+
+        for (var i = 0; i < allSelect.length; i++) {
+            allSelect[i].onclick = function() {
+                for (var j = 0; j < select.length; j++) {
+                    select[j].checked = this.checked;
+                }
+                for (j = 0; j < allSelect.length; j++) {
+                    allSelect[j].checked = this.checked;
+                }
+                //每次点击选框就计算一次总价
+                countAll();
+            }
+        }
+
+        for (i = 0; i < select.length; i++) {
+            select[i].onclick = function() {
+                if (ifAllSelected()) {
+                    for (j = 0; j < allSelect.length; j++) {
+                        allSelect[j].checked = true;
+                    }
+                }
+                if (ifNotAllSelected()) {
+                    for (j = 0; j < allSelect.length; j++) {
+                        allSelect[j].checked = false;
+                    }
+                }
+                countAll();
+            }
+        }
+
+        for (i = 0; i < adds.length; i++) {
+
+            adds[i].onclick = function() {
+                console.log(this.parentNode.childNodes[5].innerHTML);
+                var num = parseInt(this.parentNode.childNodes[5].innerHTML); //数量
+                num += 1;
+                this.parentNode.childNodes[5].innerHTML = num;
+                count();
+                countAll();
+                //获取商品id
+                var goodid = this.parentNode.childNodes[3].innerHTML;
+                console.log(goodid);
+                //跳转路由
+                window.location = "/doAdd?gid=" + goodid + "&qty=" + num;
+            }
+            detracts[i].onclick = function() {
+                    var num = parseInt(this.parentNode.childNodes[5].innerHTML);
+                    num -= 1;
+                    if (num < 1) {
+                        num = 1;
+                    }
+                    this.parentNode.childNodes[5].innerHTML = num;
+                    count();
+                    countAll();
+                    //获取商品id
+                    var goodid = this.parentNode.childNodes[3].innerHTML;
+                    //跳转路由
+                    $.ajax({
+                        url: "/doAdd?gid=" + goodid + "&qty=" + num
+                    });
+                }
+                //删除时也应该重新计算总价，或者先判断商品是否被选中，有选中则重新计算
+            dele[i].onclick = function() {
+                //获取商品id
+                var goodid = $(this).prev().prev().children().children("div:eq(1)").text();
+
+                //跳转路由
+                $.ajax({
+                    url: "/good/doDelete",
+                    type: "get",
+                    data: "gid=" + goodid
+                })
+                cart.childNodes[1].removeChild(this.parentNode);
+                countAll();
+            }
+        }
+
+        //避免兼容性问题，自行封装classname
+        function getClasses(className) {
+            var arr = [],
+                nodes = document.getElementsByTagName("*");
+            for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].className == className) {
+                    arr.push(nodes[i]);
+                }
+            }
+            return arr;
+        }
+
+        //进行单价的计算，保留两位小数
+        function count() {
+            for (var i = 0; i < prices.length; i++) {
+                totals[i].innerHTML = (prices[i].innerHTML * acc[i].innerHTML).toFixed(2);
+            }
+        }
+        //计算总价的函数
+        function countAll() {
+            var num1 = 0;
+            var num2 = 0;
+            //注意，每次计算总价应该重新取得一次select,acc和totals，因为执行删除操作时，会让这几个值发生变化
+            var select = getClasses("select"),
+                acc = getClasses("acc"),
+                totals = getClasses("total");
+            for (var i = 0; i < select.length; i++) {
+                if (select[i].checked == true) {
+                    num1 += parseInt(acc[i].innerHTML);
+                    num2 += parseFloat(totals[i].innerHTML);
+                }
+            }
+            NumofGoods.innerHTML = num1;
+            addupto.innerHTML = num2;
+        }
+        //判断是否全部选中或者全部没有选中的函数
+        function ifAllSelected() {
+            var allSelected = true;
+
+            for (var i = 0; i < select.length; i++) {
+                if (select[i].checked == false) {
+                    allSelected = false;
+                }
+            }
+            return allSelected;
+        }
+
+        function ifNotAllSelected() {
+            var notAllSelected = false;
+            for (var i = 0; i < select.length; i++) {
+                if (select[i].checked == false) {
+                    notAllSelected = true;
+                }
+            }
+            return notAllSelected;
+        }
+    </script>
+</body>
+
+</html>
